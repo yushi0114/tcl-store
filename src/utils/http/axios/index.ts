@@ -1,7 +1,7 @@
 // axios配置  可自行根据项目进行更改，只需更改该文件即可，其他文件可以不动
 // The axios configuration can be changed according to the project, just change the file, other files can be left unchanged
 
-import type { AxiosResponse } from 'axios';
+import type { AxiosResponse, AxiosInstance } from 'axios';
 import { clone } from 'lodash-es';
 import type { RequestOptions, Result } from '/#/axios';
 import type { AxiosTransform, CreateAxiosOptions } from './axiosTransform';
@@ -46,6 +46,7 @@ const transform: AxiosTransform = {
     // 错误的时候返回
 
     const { data } = res;
+    console.log('data: ', data);
     if (!data) {
       // return '[HTTP] Request has no return value';
       throw new Error(t('sys.api.apiRequestFailed'));
@@ -175,7 +176,7 @@ const transform: AxiosTransform = {
   /**
    * @description: 响应错误处理
    */
-  responseInterceptorsCatch: (axiosInstance: AxiosResponse, error: any) => {
+  responseInterceptorsCatch: (axiosInstance: AxiosInstance, error: any) => {
     const { t } = useI18n();
     const errorLogStore = useErrorLogStoreWithOut();
     errorLogStore.addAjaxErrorInfo(error);
@@ -230,8 +231,8 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
         // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#authentication_schemes
         // authentication schemes，e.g: Bearer
         // authenticationScheme: 'Bearer',
-        authenticationScheme: '',
-        timeout: 10 * 1000,
+        authenticationScheme: 'Bearer',
+        timeout: 30 * 1000,
         // 基础接口地址
         // baseURL: globSetting.apiUrl,
 

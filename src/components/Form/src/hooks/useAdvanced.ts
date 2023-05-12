@@ -65,17 +65,20 @@ export default function ({
   function getAdvanced(itemCol: Partial<ColEx>, itemColSum = 0, isLastAction = false) {
     const width = unref(realWidthRef);
 
-    const mdWidth =
-      parseInt(itemCol.md as string) ||
-      parseInt(itemCol.xs as string) ||
-      parseInt(itemCol.sm as string) ||
-      (itemCol.span as number) ||
-      BASIC_COL_LEN;
+    const xsWidth = parseInt(itemCol.xs as string) || (itemCol.span as number) || BASIC_COL_LEN;
+
+    const smWidth = parseInt(itemCol.sm as string) || xsWidth;
+
+    const mdWidth = parseInt(itemCol.md as string) || smWidth;
 
     const lgWidth = parseInt(itemCol.lg as string) || mdWidth;
     const xlWidth = parseInt(itemCol.xl as string) || lgWidth;
     const xxlWidth = parseInt(itemCol.xxl as string) || xlWidth;
-    if (width <= screenEnum.LG) {
+    if (width <= screenEnum.XS) {
+      itemColSum += xsWidth;
+    } else if (width <= screenEnum.SM) {
+      itemColSum += smWidth;
+    } else if (width <= screenEnum.LG) {
       itemColSum += mdWidth;
     } else if (width < screenEnum.XL) {
       itemColSum += lgWidth;

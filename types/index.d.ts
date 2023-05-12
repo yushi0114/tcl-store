@@ -8,9 +8,9 @@ declare interface PromiseFn<T = any, R = T> {
 
 declare type RefType<T> = T | null;
 
-declare type LabelValueOptions = {
+declare type LabelValueOptions<V extends string | number | boolean> = {
   label: string;
-  value: any;
+  value: V;
   [key: string]: string | number | boolean;
 }[];
 

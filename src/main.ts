@@ -15,11 +15,16 @@ import { initAppConfigStore } from '@/logics/initAppConfig';
 import { router, setupRouter } from '@/router';
 import { setupRouterGuard } from '@/router/guard';
 import { setupStore } from '@/store';
+import { setGlobalOptions } from 'vue-request';
 
 import App from './App.vue';
 
 async function bootstrap() {
   const app = createApp(App);
+  setGlobalOptions({
+    manual: true, // 当 manual 设置为 true 时，你需要手动触发 run 或者 runAsync 才会发起请求
+    // ...
+  });
 
   // Configure store
   // 配置 store

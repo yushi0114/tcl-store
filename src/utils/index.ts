@@ -120,3 +120,14 @@ export const withInstall = <T extends CustomComponent>(component: T, alias?: str
   };
   return component as WithInstall<T>;
 };
+
+export const arrayToObject = (arr: any[] = [], transfer = false) => {
+  const obj: Recordable = {};
+  arr.forEach((item) => {
+    obj[item.value] = item.label;
+  });
+  if (!transfer) {
+    return arr;
+  }
+  return obj;
+};

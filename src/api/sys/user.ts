@@ -1,14 +1,20 @@
 import { defHttp } from '/@/utils/http/axios';
-import { LoginParams, LoginResultModel, GetUserInfoModel } from './model/userModel';
+import {
+  LoginParams,
+  ChangePasswordParams,
+  LoginResultModel,
+  GetUserInfoModel,
+} from './model/userModel';
 
 import { ErrorMessageMode } from '/#/axios';
 
 enum Api {
-  Login = '/login',
-  Logout = '/logout',
-  GetUserInfo = '/getUserInfo',
-  GetPermCode = '/getPermCode',
-  TestRetry = '/testRetry',
+  Login = '/user/login',
+  Logout = '/user/logout',
+  GetUserInfo = '/user/getUserInfo',
+  GetPermCode = '/user/getPermCode',
+  TestRetry = '/user/testRetry',
+  ChangePassword = '/user/changePassword',
 }
 
 /**
@@ -52,4 +58,8 @@ export function testRetry() {
       },
     },
   );
+}
+
+export function changePassword(data: ChangePasswordParams) {
+  return defHttp.post({ url: Api.ChangePassword, data });
 }

@@ -6,9 +6,7 @@
 
   <div :class="[prefixCls, `${prefixCls}--detail`]" v-else>
     <span :class="`${prefixCls}__twrap`">
-      <span @click="handleClose" v-if="showDetailBack">
-        <ArrowLeftOutlined :class="`${prefixCls}__back`" />
-      </span>
+      <ArrowLeftOutlined :class="`${prefixCls}__back`" @click="handleClose" v-if="showDetailBack" />
       <span v-if="title">{{ title }}</span>
     </span>
 
@@ -65,7 +63,9 @@
     }
 
     &__twrap {
+      display: flex;
       flex: 1;
+      align-items: center;
     }
 
     &__toolbar {

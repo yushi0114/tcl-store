@@ -330,7 +330,7 @@
       }
 
       function renderItem() {
-        const { itemProps, slot, render, field, suffix, component } = props.schema;
+        const { slot, render, field, suffix, component } = props.schema;
         const { labelCol, wrapperCol } = unref(itemLabelWidthProp);
         const { colon } = props.formProps;
 
@@ -366,7 +366,7 @@
               name={field}
               colon={colon}
               class={{ 'suffix-item': showSuffix }}
-              {...(itemProps as Recordable<any>)}
+              {...(props.schema.itemProps as Recordable<any>)}
               label={renderLabelHelpMessage()}
               rules={handleRules()}
               labelCol={labelCol}

@@ -199,6 +199,7 @@ export function useColumns(
         return;
       }
     });
+    columnsRef.value = cacheColumns;
   }
   /**
    * set columns
