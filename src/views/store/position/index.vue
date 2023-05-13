@@ -1,5 +1,5 @@
 <template>
-  <PageWrapper contentFullHeight fixedHeight>
+  <PageWrapper contentFullHeight>
     <BasicTable @register="registerTable">
       <template #toolbar>
         <a-button type="primary" @click="handleCreate"> 新增仓位 </a-button>

@@ -60,13 +60,13 @@ export const searchFormSchema: FormSchema[] = [
     field: 'username',
     label: '用户名',
     component: 'Input',
-    colProps: { span: 8 },
+    colProps: { xxl: 6, xl: 6, lg: 6, md: 12, sm: 24, xs: 24 },
   },
   {
     field: 'realName',
     label: '真实姓名',
     component: 'Input',
-    colProps: { span: 8 },
+    colProps: { xxl: 6, xl: 6, lg: 6, md: 12, sm: 24, xs: 24 },
   },
 ];
 
@@ -77,13 +77,18 @@ export const accountFormSchema: FormSchema[] = [
     component: 'Input',
     componentProps: {
       showCount: true,
-      maxlength: 255,
+      maxlength: 10,
     },
     // helpMessage: ['本字段演示异步验证', '不能输入带有admin的用户名'],
     rules: [
       {
         required: true,
         message: '请输入用户名',
+        trigger: 'blur',
+      },
+      {
+        pattern: /^[a-z A-Z 0-9]{2,10}$/,
+        message: '用户名只能输入2-10位大写字母、小写字母或数字',
         trigger: 'blur',
       },
       // {

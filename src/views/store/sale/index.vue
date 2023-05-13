@@ -1,5 +1,5 @@
 <template>
-  <PageWrapper dense contentFullHeight fixedHeight>
+  <PageWrapper dense contentFullHeight>
     <BasicTable @register="registerTable">
       <template #toolbar>
         <a-button
@@ -58,8 +58,8 @@
     </BasicTable>
     <DeptModal @register="registerModal" @success="handleSuccess" />
     <SaleDetailDrawer
-      :typeOptions="typeOptions!"
-      :positionOptions="positionOptions!"
+      :typeOptions="typeOptions"
+      :positionOptions="positionOptions"
       @register="registerDrawer"
     />
   </PageWrapper>
@@ -100,6 +100,8 @@
       const { data: typeOptions } = useRequest(() => getTypeOptions({ isMap: true }), {
         manual: false,
         initialData: {},
+        cacheKey: 'type',
+        cacheTime: 60 * 60 * 24 * 7,
       });
       const { run: ExportSaleOrder } = useRequest(exportSaleOrder, {
         onSuccess(data) {
