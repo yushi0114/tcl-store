@@ -96,12 +96,15 @@
       const { data: positionOptions } = useRequest(() => getPositionOptions({ isMap: true }), {
         manual: false,
         initialData: {},
+        cacheKey: 'position',
+        cacheTime: 1000 * 60 * 60 * 24 * 7,
       });
       const { data: typeOptions } = useRequest(() => getTypeOptions({ isMap: true }), {
         manual: false,
         initialData: {},
         cacheKey: 'type',
-        cacheTime: 60 * 60 * 24 * 7,
+        cacheTime: 1000 * 60 * 60 * 24 * 7,
+        staleTime: 24 * 60 * 60 * 1000,
       });
       const { run: ExportSaleOrder } = useRequest(exportSaleOrder, {
         onSuccess(data) {
